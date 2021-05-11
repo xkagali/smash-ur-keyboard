@@ -1,4 +1,5 @@
 let countdownTimer = 5;
+let totalTime = 5;
 let words = {
     "5": ["smile","beach","house","alone","world","water","jocks","month","angel","party","piano","laugh","tiger","faith","earth","river","smile","watch","admin","santa","anime"],
     "7": ["goodbye","morning","perfect","special","pumpkin","country","monster","dolphin","teacher","forever","holiday","silence","courage","harmony","problem","musical","dancing"],
@@ -28,6 +29,7 @@ document.getElementById("replayGame").addEventListener("click", startGame);
 
 function startGame(){
     chrLimit = 5;
+    totalTime = 5;
     countdownTimer = 5;
     startTime();
     chooseWord();
@@ -37,29 +39,28 @@ function startGame(){
 }
 
 function endGame(){
-    // document.querySelector(".gameOver").style.display="block";
-    // document.querySelector(".gameArea").style.display="none";
+    document.querySelector(".gameOver").style.display="block";
+    document.querySelector(".gameArea").style.display="none";
+    totalTime = 5;
     countdownTimer = 5;
+    document.querySelector(".timeBar").style.width = "100%";
 }
-
 function startTime(){
-    // document.getElementById("timer").innerHTML = "";
     let timer = setInterval(function(){
         if(countdownTimer <= 0){
             clearInterval(timer);
-            // endGame();
+            endGame();
         }else{
-            //set timebar to 100% width if countdownTimer is reset
-            //document.querySelector(".timeBar").style.width
-            // document.getElementById("timer").innerHTML = countdownTimer;
+            console.log(countdownTimer);
+            console.log(totalTime);
             countdownTimer --;
+            document.querySelector(".timeBar").style.width = ((countdownTimer/totalTime)*100) + "%";
         }
     }, 1000)
 }
 
 function chooseWord(){
     //look through object, if key is same as chr limit, choose a random word
-    //document.getElementById("userInput").value = "";
     document.getElementById("word").innerHTML = "";
     let splitWord = [];
     for (let chr in words){
@@ -83,23 +84,32 @@ function chooseWord(){
     //save all letters of chosen word into array
     allLetters = document.querySelectorAll(".letterColor");
 }
-//let userInputField = document.getElementById("userInput");
-//userInputField.addEventListener('keyup', checkInput);
 document.addEventListener('keyup', checkInput);
 
-function checkInput(e){
-
-    allLetters.forEach(function(letter,index){ //for each letter in the current word
-        //if(index+1 <= userInputField.value.length){
-            //if the current input number is less than or same as the index of letter
-            if(letter.innerHTML === e.key) { //if letter is the same
-                if (allLetters[index - 1] === undefined || allLetters[index - 1].classList.contains("success")) { //if previous letter is undefined OR green, change current letter to green
-                    letter.classList.add("success");
-                    checkWord();
+function checkInput(e) {
+    for (let i = 0; i < allLetters.length; i++) {
+        console.log(e.key);
+        console.log(allLetters[i].innerText);
+        if (allLetters[i].innerText === e.key) { // if the pressed key is the same as current letter in the array
+            if (allLetters[i].classList.contains("success")){
+                continue; //if the current letter is already green, continue the loop
+            }else if (allLetters[i-1] === undefined || allLetters[i-1].classList.contains("success") || allLetters[i].classList.contains("error")){
+                if (allLetters[i].classList.contains("error")) { //if it's red
+                    allLetters[i].classList.remove("error") // remove red class
                 }
+                allLetters[i].classList.add("success"); //add green class
+                checkWord();
+                break; //break at each letter to prevent similar letters to go through
             }
-        //}
-    })
+        }else{
+            if (allLetters[i].classList.contains("success")){
+                continue;
+            }else{
+                allLetters[i].classList.add("error");
+                break;
+            }
+        }
+    }
 }
 
 function checkWord(){
@@ -108,9 +118,12 @@ function checkWord(){
         })
         if(allGreen){
             chrLimit += 2;
+            chrCount = 0;
             if(chrLimit < 19){
+                totalTime = 5;
                 countdownTimer = 5;
             }else{
+                totalTime = 10;
                 countdownTimer = 10;
             }
             if(chrLimit > 41){
