@@ -32,6 +32,7 @@ document.getElementById("replayGame").addEventListener("click", startGame);
 document.getElementById("endGame").addEventListener("click", endGame);
 
 function startGame(){
+    completeWords = [];
     clearInterval(timer);
     chrLimit = 5;
     totalTime = 5;
@@ -47,7 +48,12 @@ function endGame(){
     document.querySelector(".gameOver").style.display="block";
     document.querySelector(".gameArea").style.display="none";
     document.getElementById("showScore").innerHTML = score;
-    document.getElementById("completedWords").innerHTML = completeWords;
+    completeWords.forEach(function(word){
+        let wordComplete = document.createElement("span");
+        wordComplete.innerText = word;
+        document.getElementById("completedWords").append(wordComplete);
+    })
+
     clearInterval(timer);
     totalTime = 5;
     countdownTimer = 5;
@@ -135,6 +141,7 @@ function checkWord(){
                 countdownTimer = 10;
             }
             if(chrLimit > 41){
+                document.querySelector(".endTitle").innerText = "you completed the game!";
                 endGame();
             }else{
                 chooseWord();
