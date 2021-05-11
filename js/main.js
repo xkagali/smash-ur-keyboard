@@ -1,5 +1,8 @@
 let countdownTimer = 5;
 let totalTime = 5;
+let timer;
+let score = 0;
+let completeWords = [];
 let words = {
     "5": ["smile","beach","house","alone","world","water","jocks","month","angel","party","piano","laugh","tiger","faith","earth","river","smile","watch","admin","santa","anime"],
     "7": ["goodbye","morning","perfect","special","pumpkin","country","monster","dolphin","teacher","forever","holiday","silence","courage","harmony","problem","musical","dancing"],
@@ -26,8 +29,10 @@ let chrLimit = 5;
 
 document.getElementById("gameStart").addEventListener("click", startGame);
 document.getElementById("replayGame").addEventListener("click", startGame);
+document.getElementById("endGame").addEventListener("click", endGame);
 
 function startGame(){
+    clearInterval(timer);
     chrLimit = 5;
     totalTime = 5;
     countdownTimer = 5;
@@ -41,18 +46,20 @@ function startGame(){
 function endGame(){
     document.querySelector(".gameOver").style.display="block";
     document.querySelector(".gameArea").style.display="none";
+    document.getElementById("showScore").innerHTML = score;
+    document.getElementById("completedWords").innerHTML = completeWords;
+    clearInterval(timer);
     totalTime = 5;
     countdownTimer = 5;
     document.querySelector(".timeBar").style.width = "100%";
 }
+
 function startTime(){
-    let timer = setInterval(function(){
+    timer = setInterval(function(){
         if(countdownTimer <= 0){
             clearInterval(timer);
             endGame();
         }else{
-            console.log(countdownTimer);
-            console.log(totalTime);
             countdownTimer --;
             document.querySelector(".timeBar").style.width = ((countdownTimer/totalTime)*100) + "%";
         }
@@ -88,23 +95,22 @@ document.addEventListener('keyup', checkInput);
 
 function checkInput(e) {
     for (let i = 0; i < allLetters.length; i++) {
-        console.log(e.key);
-        console.log(allLetters[i].innerText);
         if (allLetters[i].innerText === e.key) { // if the pressed key is the same as current letter in the array
             if (allLetters[i].classList.contains("success")){
-                continue; //if the current letter is already green, continue the loop
+                continue; //if the current letter is already green, continue
             }else if (allLetters[i-1] === undefined || allLetters[i-1].classList.contains("success") || allLetters[i].classList.contains("error")){
                 if (allLetters[i].classList.contains("error")) { //if it's red
                     allLetters[i].classList.remove("error") // remove red class
                 }
                 allLetters[i].classList.add("success"); //add green class
                 checkWord();
-                break; //break at each letter to prevent similar letters to go through
+                break; //break at each letter;
             }
         }else{
             if (allLetters[i].classList.contains("success")){
-                continue;
+                continue; //if current letter is green, continue
             }else{
+                //if not add red and break;
                 allLetters[i].classList.add("error");
                 break;
             }
@@ -117,6 +123,8 @@ function checkWord(){
             return span.classList.contains("success");
         })
         if(allGreen){
+            completeWords.push(document.getElementById("word").innerText);
+            score += 1;
             chrLimit += 2;
             chrCount = 0;
             if(chrLimit < 19){

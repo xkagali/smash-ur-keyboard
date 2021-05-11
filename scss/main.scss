@@ -48,6 +48,17 @@ body{
       background-color: #b6b6b6;
     }
   }
+
+  #endGame{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    text-align: center;
+  }
+
+  .primaryBtn{
+    max-width: 100px;
+  }
 }
 
 .primaryBtn{
