@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-1 {
+  width: 100%;
+  flex: 0 0 8.3333333333%;
+  max-width: 8.3333333333%;
+}
+
+.col-2 {
+  width: 100%;
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+}
+
+.col-3 {
+  width: 100%;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-4 {
+  width: 100%;
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+}
+
+.col-5 {
+  width: 100%;
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.col-6 {
+  width: 100%;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-7 {
+  width: 100%;
+  flex: 0 0 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+
+.col-8 {
+  width: 100%;
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+}
+
+.col-9 {
+  width: 100%;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-10 {
+  width: 100%;
+  flex: 0 0 83.3333333333%;
+  max-width: 83.3333333333%;
+}
+
+.col-11 {
+  width: 100%;
+  flex: 0 0 91.6666666667%;
+  max-width: 91.6666666667%;
+}
+
+.col-12 {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.h-10 {
+  height: 10%;
+}
+
+.h-20 {
+  height: 20%;
+}
+
+.h-30 {
+  height: 30%;
+}
+
+.h-40 {
+  height: 40%;
+}
+
+.h-50 {
+  height: 50%;
+}
+
+.h-60 {
+  height: 60%;
+}
+
+.h-70 {
+  height: 70%;
+}
+
+.h-80 {
+  height: 80%;
+}
+
+.h-90 {
+  height: 90%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+body {
+  background-color: #c4c4c4;
+  font-size: 16px;
+  cursor: url("../img/cursor.png"), auto;
+}
+
+.success {
+  color: #000;
+  background-color: #84c47c !important;
+}
+
+.gameArea, .gameOver, .typing {
+  display: none;
+}
+
+.timeBar {
+  background-color: #4b4b4b;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+}
+
+.startGame {
+  padding-top: 10%;
+}
+.startGame h1 {
+  font-family: "Cutive Mono", monospace;
+  color: #444444;
+  font-size: 5rem;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 6rem;
+  letter-spacing: 5px;
+}
+.startGame h1 .tilt {
+  transform: rotate(41deg) translate(10px, 10px);
+  display: inline-block;
+}
+
+.gameArea #word {
+  font-family: "Cutive Mono", monospace;
+  font-size: 5rem;
+  color: #5a5a5a;
+}
+.gameArea #word .letterColor {
+  background-color: #b6b6b6;
+}
+
+.primaryBtn {
+  font-family: "Cutive Mono", monospace;
+  padding: 20px;
+  outline: none;
+  border: none;
+  background-color: #787878;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transform-style: preserve-3d;
+  cursor: url("../img/pointer.png"), auto;
+}
+.primaryBtn::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  transform: translate3d(0, 10px, -1px);
+  background-color: #4b4b4b;
+}
+.primaryBtn:hover {
+  background-color: #6d6d6d;
+  transform: translateY(3px);
+}
+.primaryBtn:hover::before {
+  transform: translate3d(0, 7px, -1px);
+}
+.primaryBtn:active {
+  background-color: #5c5c5c;
+  transform: translateY(10px);
+}
+.primaryBtn:active::before {
+  transform: translate3d(0, 0px, -1px);
+}
+
+/*# sourceMappingURL=main.css.map */

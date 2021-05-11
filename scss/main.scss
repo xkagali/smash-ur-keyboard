@@ -1,0 +1,96 @@
+@import "layout";
+
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+body{
+  background-color: #c4c4c4;
+  font-size: 16px;
+  cursor: url("../img/cursor.png"), auto;
+}
+
+.success{
+  color: #000;
+  background-color: #84c47c !important;
+}
+
+.gameArea, .gameOver, .typing{
+  display: none;
+}
+
+.timeBar {
+  background-color: #4b4b4b;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top:0px;
+}
+
+.startGame{
+  padding-top: 10%;
+  & h1{
+    font-family: 'Cutive Mono', monospace;
+    color: #444444;
+    font-size: 5rem;
+    padding: 0;
+    margin-top: 0px;
+    margin-bottom: 6rem;
+    letter-spacing: 5px;
+
+    .tilt{
+      transform: rotate(41deg) translate(10px, 10px);
+      display: inline-block;
+    }
+  }
+}
+
+.gameArea {
+  & #word{
+    font-family: 'Cutive Mono', monospace;
+    font-size: 5rem;
+    color: #5a5a5a;
+
+    & .letterColor{
+      background-color: #b6b6b6;
+    }
+  }
+}
+
+.primaryBtn{
+  font-family: 'Cutive Mono', monospace;
+  padding: 20px;
+  outline: none;
+  border: none;
+  background-color: #787878;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transform-style: preserve-3d;
+  cursor: url("../img/pointer.png"), auto;
+  &::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    border-radius: 5px;
+    transform: translate3d(0, 10px, -1px);
+    background-color:#4b4b4b;
+  }
+  &:hover{
+    background-color: #6d6d6d;
+    transform: translateY(3px);
+    &::before{
+      transform: translate3d(0, 7px, -1px);
+    }
+  }
+  &:active{
+    background-color: #5c5c5c;
+    transform: translateY(10px);
+    &::before{
+    transform: translate3d(0, 0px, -1px);
+  }
+  }
+}
