@@ -26,12 +26,14 @@ let words = {
 }
 let allLetters = [];
 let chrLimit = 5;
+let emoji = ["(>_<)","(;-;)","(╥﹏╥)","( ╥ω╥ )","(｡T ω T｡)","( ; ω ; )","(ಥ﹏ಥ)","(* ^ ω ^)","(´ ∀ ` *)","(o^▽^o)","(￣ω￣)","(o･ω･o)","(o´▽`o)","( ´ ω ` )"];
 
 document.getElementById("gameStart").addEventListener("click", startGame);
 document.getElementById("replayGame").addEventListener("click", startGame);
 document.getElementById("endGame").addEventListener("click", endGame);
 
 function startGame(){
+    score = 0;
     completeWords = [];
     clearInterval(timer);
     chrLimit = 5;
@@ -45,6 +47,8 @@ function startGame(){
 }
 
 function endGame(){
+    randomEmoji = emoji[Math.floor(Math.random() * emoji.length)];
+    document.querySelector(".gameOver").setAttribute('kaomoji', randomEmoji);
     document.querySelector(".gameOver").style.display="block";
     document.querySelector(".gameArea").style.display="none";
     document.getElementById("showScore").innerHTML = score;
@@ -136,12 +140,14 @@ function checkWord(){
             if(chrLimit < 19){
                 totalTime = 5;
                 countdownTimer = 5;
+                document.querySelector(".timeBar").style.width = "100%";
             }else{
                 totalTime = 10;
                 countdownTimer = 10;
+                document.querySelector(".timeBar").style.width = "100%";
             }
             if(chrLimit > 41){
-                document.querySelector(".endTitle").innerText = "you completed the game!";
+                document.querySelector(".endTitle").innerHTML = "you completed the game!";
                 endGame();
             }else{
                 chooseWord();

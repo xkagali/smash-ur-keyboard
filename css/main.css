@@ -184,6 +184,7 @@ body {
   font-family: "Cutive Mono", monospace;
   font-size: 5rem;
   color: #5a5a5a;
+  white-space: pre-wrap;
 }
 .gameArea #word .letterColor {
   background-color: #b6b6b6;
@@ -201,6 +202,16 @@ body {
 .gameOver {
   padding-top: 10%;
 }
+.gameOver::after {
+  content: attr(kaomoji);
+  position: absolute;
+  opacity: 0.06;
+  top: 10%;
+  left: 50%;
+  color: #444444;
+  font-size: 8rem;
+  transform: translateX(-50%);
+}
 .gameOver h1 {
   font-family: "Cutive Mono", monospace;
   color: #444444;
@@ -216,9 +227,10 @@ body {
 }
 .gameOver .allwords {
   background-color: #ccc;
+  max-width: 800px;
   max-height: 200px;
   overflow: auto;
-  margin: 30px 0px;
+  margin: 30px auto;
 }
 .gameOver .allwords span {
   background-color: #b6b6b6;
