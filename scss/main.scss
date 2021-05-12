@@ -64,7 +64,7 @@ body{
 }
 
 .gameOver {
-  padding-top: 10%;
+  padding-top: 8%;
 
   &::after{
     content: attr(kaomoji);
@@ -83,7 +83,7 @@ body{
     font-size: 5rem;
     padding: 0;
     margin-top: 0px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     letter-spacing: 5px;
 
     .tilt{
@@ -118,6 +118,10 @@ body{
   h2{
     margin: 20px 0 10px;
     color:#444444;
+  }
+
+  .credits{
+    margin-top: 30px;
   }
 }
 

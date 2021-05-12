@@ -32,13 +32,14 @@ document.getElementById("gameStart").addEventListener("click", startGame);
 document.getElementById("replayGame").addEventListener("click", startGame);
 document.getElementById("endGame").addEventListener("click", endGame);
 
+let backgroundMusic = new Audio("media/happy_walk.mp3");
+backgroundMusic.volume = 0.7;
+let nextWordSound = new Audio("media/mixkit-player-jumping-in-a-video-game-2043.wav");
+let timeLeftSound = new Audio("media/mixkit-game-ball-tap-2073.wav");
+
 function startGame(){
-    score = 0;
-    completeWords = [];
-    clearInterval(timer);
-    chrLimit = 5;
-    totalTime = 5;
-    countdownTimer = 5;
+    backgroundMusic.play();
+    resetGame();
     startTime();
     chooseWord();
     document.querySelector(".startGame").style.display="none";
@@ -64,11 +65,28 @@ function endGame(){
     document.querySelector(".timeBar").style.width = "100%";
 }
 
+function resetGame(){
+    score = 0;
+    completeWords = [];
+    clearInterval(timer);
+    chrLimit = 5;
+    totalTime = 5;
+    countdownTimer = 5;
+    document.getElementById("completedWords").innerHTML = "";
+    document.querySelector(".timeBar").style.width = ((countdownTimer/totalTime)*100) + "%";
+    document.querySelector(".timeBar").style.backgroundColor = "#6f6f6f";
+}
+
 function startTime(){
     timer = setInterval(function(){
         if(countdownTimer <= 0){
             clearInterval(timer);
             endGame();
+        }else if(countdownTimer <= 3){
+            countdownTimer --;
+            document.querySelector(".timeBar").style.width = ((countdownTimer/totalTime)*100) + "%";
+            document.querySelector(".timeBar").style.backgroundColor = "#C43F3FFF";
+            timeLeftSound.play();
         }else{
             countdownTimer --;
             document.querySelector(".timeBar").style.width = ((countdownTimer/totalTime)*100) + "%";
@@ -134,7 +152,7 @@ function checkWord(){
         })
         if(allGreen){
             completeWords.push(document.getElementById("word").innerText);
-            score += 1;
+            score += chrLimit;
             chrLimit += 2;
             chrCount = 0;
             if(chrLimit < 19){
@@ -150,6 +168,7 @@ function checkWord(){
                 document.querySelector(".endTitle").innerHTML = "you completed the game!";
                 endGame();
             }else{
+                nextWordSound.play();
                 chooseWord();
             }
         }
