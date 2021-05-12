@@ -37,6 +37,12 @@ body{
       display: inline-block;
     }
   }
+
+  & h2{
+    color: #444444;
+    background-color: #9e9e9e;
+    padding: 10px;
+  }
 }
 
 .gameArea {

@@ -33,9 +33,9 @@ document.getElementById("replayGame").addEventListener("click", startGame);
 document.getElementById("endGame").addEventListener("click", endGame);
 
 let backgroundMusic = new Audio("media/happy_walk.mp3");
-backgroundMusic.volume = 0.7;
 backgroundMusic.loop = true;
 let nextWordSound = new Audio("media/mixkit-player-jumping-in-a-video-game-2043.wav");
+nextWordSound.volume = 0.5;
 let timeLeftSound = new Audio("media/mixkit-game-ball-tap-2073.wav");
 
 function startGame(){
