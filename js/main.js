@@ -34,6 +34,7 @@ document.getElementById("endGame").addEventListener("click", endGame);
 
 let backgroundMusic = new Audio("media/happy_walk.mp3");
 backgroundMusic.volume = 0.7;
+backgroundMusic.loop = true;
 let nextWordSound = new Audio("media/mixkit-player-jumping-in-a-video-game-2043.wav");
 let timeLeftSound = new Audio("media/mixkit-game-ball-tap-2073.wav");
 
@@ -159,10 +160,12 @@ function checkWord(){
                 totalTime = 5;
                 countdownTimer = 5;
                 document.querySelector(".timeBar").style.width = "100%";
+                document.querySelector(".timeBar").style.backgroundColor = "#6f6f6f";
             }else{
                 totalTime = 10;
                 countdownTimer = 10;
                 document.querySelector(".timeBar").style.width = "100%";
+                document.querySelector(".timeBar").style.backgroundColor = "#6f6f6f";
             }
             if(chrLimit > 41){
                 document.querySelector(".endTitle").innerHTML = "you completed the game!";
